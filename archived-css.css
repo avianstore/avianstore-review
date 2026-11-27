@@ -1,0 +1,1882 @@
+/* ==========================================================================
+   CUSTOM CSS – WooCommerce + Flatsome
+   ==========================================================================
+
+   MỤC LỤC
+   --------------------------------------------------------------------------
+   01. Global / Layout chung
+   02. Form controls (search, input)
+   03. Header & Mini-cart
+   04. Trang sản phẩm (Single product)
+       04.1 Breadcrumb, tiêu đề, meta
+       04.2 Gallery & Slider
+       04.3 Tab mô tả + nút "Xem thêm"
+       04.4 Add to cart & Quantity
+   05. WooCommerce Product Addons (WCPA)
+   06. Giỏ hàng & Checkout
+   07. Vận chuyển & Timeline giao hàng (YITH) + Tooltip + Trust badge
+   08. Upsell: Coupon, thông báo giảm giá, BMSM, Tips
+   09. Tra cứu đơn hàng (Tracking)
+   10. Trang tổng hợp Reviews
+   11. Trang chủ: Banner
+   12. Trang chủ: New Arrivals
+   13. Trang chủ desktop: Search Bar
+   14. Footer
+   15. Hộp thông báo Free Ship (TPFS)
+   16. Utilities
+
+   GHI CHÚ
+   - Các rule trùng lặp đã được gộp (#place_order, #wrapper > .message-wrapper).
+   - Thứ tự rule trong từng nhóm được giữ nguyên khi có xung đột specificity.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   01. GLOBAL / LAYOUT CHUNG
+   ========================================================================== */
+
+.page-wrapper {
+  padding-top: 15px !important;
+}
+
+.col {
+  padding-bottom: 10px !important;
+}
+
+.col.medium-6.small-12.large-6 {
+  padding-bottom: 0;
+}
+
+.col-inner.has-border {
+  padding: 15px;
+}
+
+.content-area.page-wrapper {
+  padding-bottom: 0;
+}
+
+.page-title-inner {
+  padding-top: 0;
+}
+
+.cart-container.container.page-wrapper.page-checkout,
+.text-center.pt.pb {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#wrapper > .message-wrapper {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.is-well {
+  padding: 15px;
+  box-shadow: none;
+  border: 1.5px dashed #cf2e2e;
+}
+
+.blog-archive h1.page-title {
+  display: none;
+}
+
+.title-wrapper .category {
+  opacity: 1;
+}
+
+.product-small .price-wrapper .price {
+  margin-top: 5px;
+}
+
+/* Ảnh sản phẩm: bo góc */
+.single-product .product-gallery-slider img,
+.box-image {
+  border-radius: 10px;
+}
+
+/* Lazyload (LiteSpeed): hiệu ứng fade-in */
+img[data-lazyloaded] {
+  opacity: 0;
+}
+
+img.litespeed-loaded {
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+}
+
+.cf7-cf-turnstile {
+ margin-bottom: 10px !important;
+}
+
+/* ==========================================================================
+   02. FORM CONTROLS
+   ========================================================================== */
+
+input[type="search"] {
+  border-radius: 8px !important;
+  font-size: 1.1em;
+}
+
+.input-text.qty.text {
+  width: 2.5em;
+  box-shadow: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.15) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Đổi màu chữ placeholder trong menu mobile sang đen */
+.mobile-sidebar .search-field::placeholder,
+.off-canvas .search-field::placeholder {
+  color: #242427 !important;
+  opacity: 1 !important;
+}
+
+/* Đổi màu chữ khi gõ vào ô search (tránh trường hợp gõ xong chữ vẫn màu trắng) */
+.mobile-sidebar .search-field,
+.off-canvas .search-field {
+  color: #242427 !important;
+}
+
+/* Đổi màu icon kính lúp trong menu mobile sang đen */
+.mobile-sidebar .ux-search-submit,
+.mobile-sidebar .ux-search-submit i,
+.off-canvas .ux-search-submit,
+.off-canvas .ux-search-submit i {
+  color: #242427 !important;
+}
+
+/* ==========================================================================
+   03. HEADER & MINI-CART
+   ========================================================================== */
+
+.header-cart-title {
+  color: #ffffff;
+}
+
+/* Bộ chọn tiền tệ (WooCommerce Multi Currency) */
+.woocommerce-multi-currency.wmc-shortcode .wmc-currency.wmc-active,
+.woocommerce-multi-currency.wmc-shortcode .wmc-current-currency {
+  font-family: Jost, sans-serif;
+  background-color: #fff;
+  color: #0a0a0a;
+}
+
+.wmc-text {
+  font-weight: bolder;
+  color: #222;
+}
+
+/* Off-canvas cart */
+.mfp-content.off-canvas-cart {
+  width: 25%;
+}
+
+.cart-popup-inner .widget_shopping_cart_content .product_list_widget {
+  max-height: unset;
+}
+
+ul.product_list_widget li dl {
+  line-height: unset;
+}
+
+
+/* ==========================================================================
+   04. TRANG SẢN PHẨM (SINGLE PRODUCT)
+   ========================================================================== */
+
+/* ---- 04.1 Breadcrumb, tiêu đề, meta ------------------------------------ */
+
+.product-breadcrumb-container {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.woocommerce-breadcrumb.breadcrumbs.uppercase a {
+  color: rgb(89, 89, 89);
+  font-size: 14px;
+}
+
+.product-title {
+  margin-top: 10px;
+}
+
+.price-wrapper .product-page-price {
+  display: none;
+}
+
+.product_meta {
+  font-size: 0.85em;
+  color: #222;
+}
+
+.product_meta .posted_in a {
+  color: #222;
+}
+
+/* ---- 04.2 Gallery & Slider --------------------------------------------- */
+
+.product-thumbnails a {
+  border-radius: 5px;
+}
+
+.flickity-button.flickity-prev-next-button,
+.image-tools.bottom.left {
+  display: none;
+}
+
+.flickity-slider .col p {
+  margin-bottom: 0;
+}
+
+.custom-product-page .row.mx-product-gallery .row.align-center .col.large-12 {
+  margin-left: 15px !important;
+  padding-right: 0 !important;
+}
+
+.custom-product-page .woocommerce-tabs {
+  margin-top: 10px;
+}
+
+.product-section-title.container-width {
+  margin-left: 10px;
+}
+
+@media (max-width: 849px) {
+  #col-1549389786 .product-images {
+    margin-bottom: 10px !important;
+  }
+  #col-1549389786 .product-thumbnails {
+    margin-bottom: 12px !important;
+  }
+  #col-1549389786 .product-thumbnails .flickity-viewport {
+    height: auto !important;
+    min-height: 70px;
+  }
+  #col-1549389786 .col-inner {
+    padding-bottom: 0 !important;
+  }
+}
+
+/* ---- 04.3 Tab mô tả + nút "Xem thêm" ----------------------------------- */
+
+#tab-description {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible;
+}
+
+.single-product div#tab-description {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 25px;
+}
+
+/* Panel không active: ẩn hoàn toàn */
+.single-product .tab-panels div#tab-description.panel:not(.active) {
+  height: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.seogroups_readmore_flatsome {
+  position: absolute;
+  bottom: 0;
+  z-index: 10;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  background: #fff;
+}
+
+/* Lớp mờ dần phía trên nút */
+.seogroups_readmore_flatsome:before {
+  content: "";
+  display: block;
+  height: 55px;
+  margin-top: -45px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+.seogroups_readmore_flatsome a {
+  display: block;
+  color: var(--primary-color);
+}
+
+/* Mũi tên chỉ xuống */
+.seogroups_readmore_flatsome a:after {
+  content: "";
+  display: inline-block;
+  width: 0;
+  right: 0;
+  margin: -2px 0 0 5px;
+  vertical-align: middle;
+  border-top: 6px solid var(--primary-color);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+}
+
+/* Trạng thái "Thu gọn": mũi tên chỉ lên, bỏ lớp mờ */
+.seogroups_readmore_flatsome_less a:after {
+  border-top: 0;
+  border-bottom: 6px solid var(--primary-color);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+}
+
+.seogroups_readmore_flatsome_less:before {
+  display: none;
+}
+
+/* ---- 04.4 Add to cart & Quantity --------------------------------------- */
+
+form.cart {
+  margin-bottom: 1em;
+}
+
+.sg_wrapper_add_to_cart_quantity {
+  display: flex;
+  margin-top: 10px;
+}
+
+.sg_wrapper_add_to_cart_quantity .single_add_to_cart_button {
+  width: 100%;
+  height: 60px;
+  margin-right: 0;
+  margin-bottom: 0;
+  border: 1px solid rgba(0, 0, 0, 0.16) !important;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px -2px rgb(35 67 92 / 32%);
+  font-size: 1.2rem;
+}
+
+.sg_wrapper_add_to_cart_quantity .quantity {
+  margin-bottom: 0;
+}
+
+.sg_wrapper_add_to_cart_quantity .quantity.buttons_added input[type="number"] {
+  height: 100%;
+}
+
+
+/* ==========================================================================
+   05. WOOCOMMERCE PRODUCT ADDONS (WCPA)
+   ========================================================================== */
+
+/*
+.wcpa_image label,
+.text_color {
+  display: none !important;
+}
+*/
+
+/* ---- Form chung -------------------------------------------------------- */
+
+.wcpa_form_outer {
+  margin: 1em 0;
+}
+
+.wcpa_form_outer .wcpa_error_msg {
+  position: relative;
+}
+
+.wcpa_form_item {
+  margin: 0;
+}
+
+.wcpa-custom-label {
+  display: inline-block;
+  margin-bottom: 0.4em;
+  padding-right: 0.5em;
+  color: #222;
+  font-size: 0.9em;
+  font-weight: 700;
+}
+
+/* ---- Màu sắc / hình ảnh ------------------------------------------------ */
+
+.wcpa_color input:checked + label span {
+  box-shadow: 0 0 5px 0 #36b97e !important;
+}
+
+.wcpa_row a.button:hover {
+  box-shadow: none;
+}
+
+/* ---- Tổng giá ---------------------------------------------------------- */
+
+.wcpa_price_summary {
+  background: none;
+}
+
+.wcpa_price_summary .wcpa_total {
+  margin-left: 0;
+}
+
+.wcpa_total .wcpa_price_outer {
+  float: right !important;
+  color: #ec0303;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.wcpa_price .woocommerce-Price-amount .woocommerce-Price-currencySymbol {
+  font-size: 1em;
+}
+
+/* ---- Size chart -------------------------------------------------------- */
+
+.wcpa_paragraph_block.wcpa_size_charts a {
+  margin: 5px 0 0;
+  padding: 0;
+  border: 0;
+  background-color: #F4F5F9 !important;
+}
+
+.wcpa_paragraph_block.wcpa_size_charts span {
+  color: #222;
+  font-size: 15px;
+  line-height: 16px;
+  text-transform: none;
+  border-bottom: 2px solid #222;
+}
+
+/* ---- Hiển thị tuỳ chọn trong giỏ hàng / đơn hàng ----------------------- */
+
+.wcpa_cart_val.wcpa_cart_type_color-group p span,
+.wcpa_cart_val.wcpa_cart_type_image-group .wcpa_cart_price {
+  display: none;
+}
+
+.wcpa_cart_type_image-group,
+.wcpa_cart_type_color-group {
+  display: inline-block !important;
+  margin: 0 !important;
+  padding-top: 0 !important;
+}
+
+.wcpa_cart_type_color-group p,
+.wcpa_cart_type_image-group p {
+  margin: 0 !important;
+  color: red;
+  font-weight: 600;
+}
+
+dl dd,
+dl dt {
+  margin: 0 5px 5px 0;
+}
+
+dl.variation {
+  font-size: 0.75em;
+}
+
+.woocommerce-table__line-item.order_item .product-name .wc-item-meta li {
+  display: flex;
+}
+
+.woocommerce-table__line-item.order_item .product-name .wc-item-meta li .wcpa_image_group .wcpa_image {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+/* ==========================================================================
+   06. GIỎ HÀNG & CHECKOUT
+   ========================================================================== */
+
+.button-continue-shopping,
+.woocommerce-cart-form,
+.shop_table.shop_table_responsive.cart.woocommerce-cart-form__contents,
+.return-to-shop {
+  margin-bottom: 0;
+}
+
+.cart-container .woocommerce-notices-wrapper {
+  display: none;
+}
+
+.cart-discount {
+  background-color: unset;
+  font-size: 1em;
+}
+
+.wc-proceed-to-checkout a {
+  height: 50px;
+  padding-top: 6px;
+}
+
+.woocommerce-checkout .large-7,
+.woocommerce-checkout .large-5 {
+  padding-bottom: 10px;
+}
+
+.woocommerce-error {
+  color: #b20000;
+  font-weight: 600;
+}
+
+#place_order {
+  width: 100%;
+  height: 60px;
+  margin-right: 0;
+  border: 1px solid rgba(0, 0, 0, 0.16) !important;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px -2px rgb(35 67 92 / 32%);
+  font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   07. VẬN CHUYỂN, TIMELINE GIAO HÀNG, TOOLTIP, TRUST BADGE
+   ========================================================================== */
+
+/* ---- Thông tin ship / thanh toán an toàn ------------------------------- */
+
+.talp-pp-div {
+  margin: 15px 0 22px;
+  padding: 10px 10px 13px;
+  border: 1px solid #ececec;
+  border-radius: 5px;
+}
+
+.talp-pp {
+  font-size: 14px !important;
+}
+
+.wyuscs {
+  display: table-row;
+}
+
+.wyuscs1 {
+  display: table-cell;
+  width: 40px;
+  vertical-align: middle;
+}
+
+.wyuscs2 {
+  display: table-cell;
+  padding-left: 10px;
+  vertical-align: middle;
+}
+
+#ywcdd_info_shipping_date {
+  margin: 15px 0 20px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background: #fff0d69e;
+  line-height: 22px;
+}
+
+span.ywcdd_shipping_message {
+  font-size: 13px;
+}
+
+.fulfillinfo {
+  margin-bottom: 0;
+  padding-top: 10px;
+  font-size: 13px;
+}
+
+/* ---- Timeline ngày giao hàng ------------------------------------------- */
+
+.fulfillment_timeline_date {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 15px;
+}
+
+.fulfillment_timeline_date .time {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.fulfillment_timeline_date .time .icon-holder {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+}
+
+.fulfillment_timeline_date .time .icon-holder .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #eaeaea;
+}
+
+.fulfillment_timeline_date .time .icon-holder .icon svg {
+  width: 60%;
+  height: auto;
+}
+
+.fulfillment_timeline_date .time:first-child .icon-holder,
+.fulfillment_timeline_date .time:nth-child(2) .icon-holder,
+.fulfillment_timeline_date .time:last-child .icon-holder {
+  justify-content: space-between;
+}
+
+/* Đường nối giữa các mốc */
+.fulfillment_timeline_date .time:first-child .icon-holder:after,
+.fulfillment_timeline_date .time:last-child .icon-holder:before {
+  content: "";
+  display: block;
+  width: calc(100% - 35px);
+  height: 2px;
+  background-color: #f1f1f1;
+}
+
+.fulfillment_timeline_date .time:nth-child(2) {
+  text-align: center;
+}
+
+.fulfillment_timeline_date .time:nth-child(2) .icon-holder:after,
+.fulfillment_timeline_date .time:nth-child(2) .icon-holder:before {
+  content: "";
+  display: block;
+  width: calc(50% - 20px);
+  height: 2px;
+  background-color: #f1f1f1;
+}
+
+.fulfillment_timeline_date .time:nth-child(2) .edd-description {
+  margin: 0 auto;
+}
+
+.fulfillment_timeline_date .time:last-child {
+  text-align: right;
+}
+
+.fulfillment_timeline_date .time:last-child .edd-description {
+  margin-left: auto;
+}
+
+.fulfillment_timeline_date .time p {
+  width: 100%;
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Mô tả có gạch chân nét đứt + tooltip */
+.est-desc,
+.fulfillment_timeline_date .time .edd-description,
+.simply-protection {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #444;
+  font-size: 13px;
+  font-weight: 400;
+  text-transform: capitalize;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-decoration-color: inherit;
+  text-underline-position: under;
+  cursor: help;
+}
+
+/* ---- Tooltip (Tippy.js) ------------------------------------------------ */
+
+[data-tippy-root] .tippy-box {
+  border: 1px solid #ececec;
+  background: #fff;
+  color: #26323d;
+  box-shadow:
+    0 0 15px 5px rgb(154 161 177 / 5%),
+    0 0 80px 0 rgb(36 40 47 / 5%),
+    0 2px 4px 0 rgb(91 94 105 / 5%);
+}
+
+[data-tippy-root] .tippy-arrow {
+  color: #fff;
+}
+
+.tippy-content {
+  padding: 10px !important;
+}
+
+/* ---- Cờ quốc gia & Trust badge ----------------------------------------- */
+
+#flag-icons-us,
+#flag-icons-eu {
+  width: 20px;
+}
+
+.trust_badge_img {
+  padding: 10px 0;
+  border-top: 1px dotted #ddd;
+  border-bottom: 1px dotted #ddd;
+}
+
+
+/* ==========================================================================
+   08. UPSELL: COUPON, THÔNG BÁO GIẢM GIÁ, BMSM, TIPS
+   ========================================================================== */
+
+/* ---- Thông báo giảm giá ------------------------------------------------ */
+
+.vintagen-discount-notices {
+  margin: 12px;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: #c5e1a5;
+  font-size: 18px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.vtg-coupon-message .message {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px dashed #a5a5a5;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.vtg-coupon-message strong {
+  color: #e61b1b;
+  font-weight: 700;
+}
+
+.message.main-message {
+  background: #c5e1a5;
+}
+
+.message.next-message {
+  background: #ffe082;
+}
+
+/* ---- Mã coupon --------------------------------------------------------- */
+
+.vintage-coupon {
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+  border: 2px dashed #d31414;
+  border-radius: 5px;
+  background: rgb(236, 236, 236);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.vintage-coupon .coupon-box {
+  color: #d31414;
+}
+
+.vintage-coupon button {
+  all: unset;
+  margin-left: 10px;
+  padding-right: 5px;
+  padding-left: 5px;
+  border: 2px solid;
+  text-transform: uppercase;
+}
+
+button[onclick="copyCoupon()"] {
+  cursor: pointer;
+}
+
+.vintage-coupon-text strong {
+  color: #2196f3;
+  font-weight: 700;
+}
+
+/* ---- BMSM (Buy More Save More) ----------------------------------------- */
+
+.vtg-bmsm-heading {
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 2px dashed #00853a;
+  border-radius: 8px;
+  vertical-align: middle;
+}
+
+.sgboxes {
+  display: table-row;
+  padding-bottom: 20px;
+}
+
+.vtg-bmsm-heading .sgbox1,
+.vtg-bmsm-heading .sgbox2 {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.vtg-bmsm-heading .sgbox1 {
+  width: 50px;
+  max-width: 50px;
+}
+
+.vtg-bmsm-heading .sgbox2 {
+  padding-left: 10px;
+}
+
+.sgbmsm-title {
+  color: red;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: left;
+}
+
+.sgbmsm-text {
+  color: #535353;
+  font-size: 13px;
+  line-height: 18px;
+  text-align: left;
+}
+
+.vtg-bmsm-items {
+  margin: 0;
+  padding: 0;
+}
+
+.vtg-bmsm-items li {
+  position: relative;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 54px;
+  margin: 4px 0 !important;
+  padding: 0 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: rgb(245, 245, 245);
+  list-style: none;
+  transition: 0.15s ease-in-out;
+}
+
+.vtg-bmsm-item-label {
+  margin-right: 7px;
+  padding: 2px 5px;
+  background: #446084;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.vtg-bmsm-item-title {
+  color: red;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: left;
+}
+
+.vtg-bmsm-item-text {
+  color: #535353;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: left;
+}
+
+/* ---- Tips (WPCOT) ------------------------------------------------------ */
+
+/* --- Khung tổng --- */
+:is(#order_review, body.woocommerce-cart) .wpcot-tips.wpcot-btn-square {
+  margin: 20px 0 16px !important;
+  padding: 18px 16px !important;
+  background: #fff !important;
+  border: 1px solid #e5e5e5 !important;
+  border-radius: 6px !important;
+}
+
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* --- Tiêu đề và mô tả --- */
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-name {
+  margin: 0 0 6px !important;
+  padding: 0 !important;
+  color: #222 !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  line-height: 1.3 !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-desc {
+  margin: 0 0 14px !important;
+  padding: 0 !important;
+  line-height: 1.5 !important;
+}
+
+/* --- Hàng nút chọn % --- */
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-values {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: stretch !important;
+  gap: 8px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-value,
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-value-custom {
+  flex: 1 1 auto;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 64px;
+  height: auto !important;
+  min-height: 42px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #fff !important;
+  background-image: none !important;
+  border: 1px solid #d9d9d9 !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  line-height: 1 !important;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* --- Span cấp 1: là khối có padding --- */
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-value > span,
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-value-custom > span {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 10px 8px !important;
+  background: transparent !important;
+  color: #333 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+}
+
+/* --- Span lồng bên trong (giá tiền): inline, không padding --- */
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-value > span span,
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-value-custom > span span {
+  display: inline !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  color: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+  white-space: nowrap !important;
+}
+
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .woocommerce-Price-currencySymbol {
+  margin-right: 2px !important;
+}
+
+/* --- Hover --- */
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-value:not(.active):hover,
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-value-custom:hover {
+  background: #fff5f5 !important;
+  border-color: #ea1f25 !important;
+}
+
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-value:not(.active):hover span,
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-value-custom:hover span {
+  color: #ea1f25 !important;
+}
+
+/* --- Nút đang chọn --- */
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-value.active {
+  background: #ea1f25 !important;
+  border-color: #ea1f25 !important;
+  box-shadow: 0 2px 6px rgba(234, 31, 37, 0.3) !important;
+}
+
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-value.active,
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-value.active span,
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-value.active .amount {
+  color: #fff !important;
+}
+
+/* --- Ô nhập tip tuỳ chọn + nút ADD --- */
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-custom {
+  margin: 12px 0 0 !important;
+  padding: 0 !important;
+}
+
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-custom-form,
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-custom-form-inner {
+  display: flex !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  gap: 8px !important;
+}
+
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-custom-value {
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 0;
+  height: 42px !important;
+  margin: 0 !important;
+  background: #fff !important;
+  color: #333 !important;
+  border: 1px solid #d9d9d9 !important;
+  border-radius: 4px !important;
+  box-sizing: border-box !important;
+}
+
+:is(#order_review, body.woocommerce-cart) .wpcot-tips .wpcot-tip-custom-add {
+  flex: 0 0 auto !important;
+  height: 42px !important;
+  margin: 0 !important;
+  padding: 0 24px !important;
+  background: #222 !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 4px !important;
+  font-size: 13px !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  box-sizing: border-box !important;
+}
+
+
+/* ==========================================================================
+   09. TRA CỨU ĐƠN HÀNG (TRACKING)
+   ========================================================================== */
+
+.pp-tracking-section {
+  min-height: auto !important;
+  max-width: unset !important;
+  margin: 0 !important;
+}
+
+.pp-tracking-section .above-section,
+.pp-tracking-section .below-section,
+.pp-tracking-section .tracking-result-title {
+  padding: 0 !important;
+}
+
+.pp-tracking-section .vintagen-discount-notices {
+  margin: 12px 0 !important;
+}
+
+.tracking-form .box-main {
+  padding: 10px 15px !important;
+}
+
+.box-main .form-field {
+  margin-bottom: 0 !important;
+}
+
+.form-field input {
+  margin-bottom: 5px !important;
+}
+
+.box-main .form-button button {
+  width: 100% !important;
+  margin-top: 10px !important;
+  background-color: rgb(38, 133, 59) !important;
+}
+
+.tracking-result .result-left .pp_tracking_status_tips {
+  margin: 10px 0 !important;
+}
+
+.pp_timeline {
+  margin-bottom: 0 !important;
+}
+
+.result-right ul li {
+  margin-bottom: 10px !important;
+}
+
+
+/* ==========================================================================
+   10. TRANG TỔNG HỢP REVIEWS
+   Phạm vi: .all-woocommerce-reviews-wrapper
+   ========================================================================== */
+
+/* ---- Container --------------------------------------------------------- */
+
+.all-woocommerce-reviews-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.all-woocommerce-reviews-wrapper .reviews-main-heading {
+  margin-bottom: 40px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
+  color: #2c3e50;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.all-woocommerce-reviews-wrapper .woocommerce-reviews-list {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+/* ---- Từng mục đánh giá ------------------------------------------------- */
+
+.all-woocommerce-reviews-wrapper .single-review-item {
+  margin-bottom: 30px;
+  padding: 25px;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease-in-out;
+}
+
+.all-woocommerce-reviews-wrapper .single-review-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.all-woocommerce-reviews-wrapper .review-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #ced4da;
+}
+
+.all-woocommerce-reviews-wrapper .product-thumbnail-col img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border: 2px solid #adb5bd;
+  border-radius: 6px;
+}
+
+.all-woocommerce-reviews-wrapper .product-title-review {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+.all-woocommerce-reviews-wrapper .product-title-review a {
+  color: #2d5a5a; /* Xanh teal – màu thương hiệu */
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.all-woocommerce-reviews-wrapper .review-content {
+  padding: 15px;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  color: #34495e;
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.all-woocommerce-reviews-wrapper .review-meta {
+  margin-top: 15px;
+  color: #95a5a6;
+  font-size: 0.85rem;
+  text-align: right;
+}
+
+/* ---- Phân trang -------------------------------------------------------- */
+
+.all-woocommerce-reviews-wrapper .reviews-pagination {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.all-woocommerce-reviews-wrapper .reviews-pagination ul {
+  display: inline-flex !important;
+  gap: 8px;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.all-woocommerce-reviews-wrapper .reviews-pagination li a,
+.all-woocommerce-reviews-wrapper .reviews-pagination li span {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  min-width: 45px;
+  height: 45px;
+  padding: 0 10px;
+  border: 1px solid #ececec;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  color: #555;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.all-woocommerce-reviews-wrapper .reviews-pagination li span.current {
+  border-color: #b56e0c !important;
+  background-color: #b56e0c !important;
+  box-shadow: 0 4px 10px rgba(235, 31, 39, 0.3);
+  color: #fff !important;
+}
+
+.all-woocommerce-reviews-wrapper .reviews-pagination li a:hover {
+  transform: translateY(-2px);
+  border-color: #eb1f27;
+  background-color: #f9f9f9;
+  color: #eb1f27;
+}
+
+/* ---- Responsive: Mobile (≤ 600px) -------------------------------------- */
+
+@media (max-width: 600px) {
+  /* Phân trang */
+  .all-woocommerce-reviews-wrapper .reviews-pagination ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .all-woocommerce-reviews-wrapper .reviews-pagination li a,
+  .all-woocommerce-reviews-wrapper .reviews-pagination li span {
+    min-width: 38px;
+    height: 38px;
+    font-size: 0.85rem;
+  }
+
+  /* Nút Prev / Next: ẩn chữ, hiển thị icon */
+  .all-woocommerce-reviews-wrapper .reviews-pagination li:first-child a,
+  .all-woocommerce-reviews-wrapper .reviews-pagination li:last-child a {
+    font-size: 0 !important;
+  }
+
+  .all-woocommerce-reviews-wrapper .reviews-pagination li:first-child a::before {
+    content: "\f104";
+    font-family: "fl-icons";
+    font-size: 18px;
+  }
+
+  .all-woocommerce-reviews-wrapper .reviews-pagination li:last-child a::before {
+    content: "\f105";
+    font-family: "fl-icons";
+    font-size: 18px;
+  }
+
+  /* Header review */
+  .all-woocommerce-reviews-wrapper .review-header {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .all-woocommerce-reviews-wrapper .product-thumbnail-col {
+    flex: 0 0 70px; /* Cố định, không co giãn */
+    max-width: 70px;
+  }
+
+  .all-woocommerce-reviews-wrapper .product-thumbnail-col img {
+    width: 70px !important;
+    height: 70px !important;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .all-woocommerce-reviews-wrapper .product-title-review {
+    display: -webkit-box;
+    margin-bottom: 4px;
+    overflow: hidden;
+    font-size: 0.95rem !important;
+    line-height: 1.2;
+    -webkit-line-clamp: 2; /* Tối đa 2 dòng */
+    -webkit-box-orient: vertical;
+  }
+}
+
+
+/* ==========================================================================
+   11. TRANG CHỦ: BANNER
+   Chỉ áp dụng cho .home
+   ========================================================================== */
+
+/* Cho vùng nội dung tràn full-width */
+.home #content > .row.row-main {
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.home #content > .row.row-main > .col {
+  flex-basis: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+.home #content > .row.row-main > .col > .col-inner {
+  max-width: 100% !important;
+}
+
+/* Bỏ khe trắng giữa header và banner */
+.home #content,
+.home .page-wrapper {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.home #main {
+  margin-top: 0 !important;
+}
+
+/* Banner (dạng .banner hoặc ảnh .img) tràn full */
+.home #banner-24099699,
+.home #image_782800683 {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+
+.home #image_782800683 img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Chữ trong banner thẳng hàng với logo */
+.home #banner-24099699 .banner-layers.container {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+/* Các khối nội dung bên dưới banner: giới hạn độ rộng */
+.home #content > .row.row-main > .col > .col-inner > .row,
+.home #content > .row.row-main > .col > .col-inner > .text-center,
+.home #content > .row.row-main > .col > .col-inner > .section-title-container {
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ==========================================================================
+   12. TRANG CHU: NEW ARRIVALS
+   Selector goc (lap lai o moi rule ben duoi):
+   .home .row:has(> .col > .col-inner > .section-title-container + .slider)
+   ========================================================================== */
+
+/* Container */
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) > .col {
+  padding: 0;
+}
+
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) > .col > .col-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 20px 20px;
+}
+
+/* Tieu de section */
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) .section-title-container {
+  position: relative;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) h2.section-title-normal {
+  display: flex;
+  align-items: flex-end;
+  margin: 0 0 24px;
+  padding: 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) h2.section-title-normal b {
+  display: none;
+}
+
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) h2.section-title-normal .section-title-main {
+  margin: 0 0 -1px;
+  padding: 0 0 16px;
+  border-bottom: 3px solid #d3303b;
+  color: #222;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+/* Dong chu phu ben phai tieu de.
+   Gan vao .section-title-container (khong gan vao h2) de dung font chu cua trang,
+   khong bi lay font tieu de (chi co dam 700) lam chu bi dam. */
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) .section-title-container:after {
+  content: "Fresh designs, just landed.";
+  position: absolute;
+  right: 0;
+  bottom: 19px;
+  margin: 0;
+  padding: 0;
+  color: #777;
+  font-size: 13px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+/* Slider & item */
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) .row.slider {
+  width: auto;
+  max-width: none;
+  margin-left: -8px;
+  margin-right: -8px;
+}
+
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) .flickity-slider > .col {
+  padding: 0 8px;
+}
+
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) .box-image {
+  overflow: hidden;
+  border-radius: 6px;
+  background: #f3f3f3;
+}
+
+/* Thong tin san pham */
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) .box-text {
+  padding: 12px 0 0;
+  text-align: left;
+}
+
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) .box-text .product-cat {
+  display: none;
+}
+
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) .box-text .title-wrapper .name {
+  display: -webkit-box;
+  min-height: 2.6em;
+  margin: 0 0 4px;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: none;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) .box-text .title-wrapper .name a {
+  color: #222;
+  font-weight: 700;
+}
+
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) .box-text .title-wrapper .name a:hover {
+  color: #d3303b;
+}
+
+/* Gia */
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) .box-text .price-wrapper {
+  margin: 0;
+}
+
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) .box-text .price {
+  margin: 0;
+  color: #222;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) .box-text .price del {
+  margin-right: 6px;
+  color: #999;
+  font-weight: 400;
+  opacity: 1;
+}
+
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) .box-text .price ins {
+  color: #d3303b;
+  text-decoration: none;
+}
+
+/* Nut dieu huong slider */
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) .flickity-button.flickity-prev-next-button {
+  display: block;
+  border: 1px solid #e6e6e6;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.home .row:has(> .col > .col-inner > .section-title-container + .slider) .flickity-prev-next-button .arrow {
+  fill: #222;
+}
+
+/* Responsive: Mobile (<= 699px)
+   Tieu de xep doc: ten, dong chu phu, roi toi duong ke (giong Shop by theme va Featured) */
+@media (max-width: 699px) {
+  .home .row:has(> .col > .col-inner > .section-title-container + .slider) > .col > .col-inner {
+    padding: 0 12px 12px;
+  }
+
+  .home .row:has(> .col > .col-inner > .section-title-container + .slider) .section-title-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 18px;
+    padding: 0 0 12px;
+    background: linear-gradient(#d3303b, #d3303b) no-repeat left bottom / 170px 3px, linear-gradient(#e6e6e6, #e6e6e6) no-repeat left bottom / 100% 1px;
+  }
+
+  .home .row:has(> .col > .col-inner > .section-title-container + .slider) h2.section-title-normal {
+    margin: 0;
+    border-bottom: 0;
+  }
+
+  .home .row:has(> .col > .col-inner > .section-title-container + .slider) h2.section-title-normal .section-title-main {
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+    font-size: 22px;
+  }
+
+  .home .row:has(> .col > .col-inner > .section-title-container + .slider) .section-title-container:after {
+    position: static;
+    margin: 4px 0 0;
+    font-size: 12px;
+    text-align: left;
+    white-space: normal;
+  }
+
+  .home .row:has(> .col > .col-inner > .section-title-container + .slider) .row.slider {
+    margin-left: -6px;
+    margin-right: -6px;
+  }
+
+  .home .row:has(> .col > .col-inner > .section-title-container + .slider) .flickity-slider > .col {
+    padding: 0 6px;
+  }
+
+  .home .row:has(> .col > .col-inner > .section-title-container + .slider) .flickity-button.flickity-prev-next-button {
+    display: none;
+  }
+
+}
+
+
+/* ==========================================================================
+   12. TRANG CHU: SEARCH BAR
+   ========================================================================== */
+
+/* Khung input tìm kiếm */
+.header-search-form .search-field {
+  color: #ffffff;
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: none;
+}
+
+/* Chữ placeholder "Search..." */
+.header-search-form .search-field::placeholder {
+  color: #ffffff;
+  opacity: 0.8; /* chỉnh thành 1 nếu muốn trắng đục hoàn toàn */
+}
+
+.header-search-form .search-field::-webkit-input-placeholder {
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+/* Khi click vào ô tìm kiếm */
+.header-search-form .search-field:focus {
+  color: #ffffff;
+  border-color: #ffffff;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+
+/* Nút và icon kính lúp */
+.header-search-form .ux-search-submit,
+.header-search-form .ux-search-submit i {
+  color: #ffffff;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.header-search-form .ux-search-submit:hover,
+.header-search-form .ux-search-submit:hover i {
+  color: #ffffff;
+  opacity: 0.85;
+}
+
+
+/* ==========================================================================
+   14. FOOTER
+   ========================================================================== */
+
+/* ---- 13.1 Màu sắc & bỏ đường kẻ ---------------------------------------- */
+
+.footer-widgets .widget-title {
+  margin-bottom: 0 !important;
+  color: #fff !important;
+}
+
+.footer-widgets .is-divider.small {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.footer-widgets .menu li,
+.footer-widgets .widget_nav_menu li,
+.footer-widgets .widget_nav_menu ul.menu li {
+  border: 0 !important;
+}
+
+.footer-widgets .widget_nav_menu ul.menu li a:hover,
+.footer-widgets .widget_nav_menu ul.menu li.current-menu-item > a {
+  color: #fff !important;
+}
+
+/* ---- 13.2 Căn lề thẳng hàng với nội dung phía trên (rộng 1180px) -------- */
+
+.footer-widgets .row.large-columns-4 {
+  max-width: 1180px;
+  padding: 0 20px;
+}
+
+.absolute-footer .container {
+  max-width: 1180px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Cột không padding trái; width:auto để huỷ width:100% mặc định của Flatsome */
+.footer-widgets .row.large-columns-4 > .col {
+  width: auto !important;
+  padding-left: 0 !important;
+  padding-right: 15px !important;
+}
+
+.footer-widgets .widget_nav_menu a {
+  white-space: nowrap;
+}
+
+/* ---- 13.3 Desktop (≥ 850px): logo bên trái, 3 menu đẩy sang phải ------- */
+
+@media (min-width: 850px) {
+  .footer-widgets .row.large-columns-4 {
+    flex-wrap: nowrap;
+  }
+
+  /* 3 cột menu: rộng theo nội dung, cách đều nhau */
+  .footer-widgets .row.large-columns-4 > .col {
+    flex: 0 0 auto !important;
+    max-width: none !important;
+    padding-left: clamp(40px, 6vw, 80px) !important;
+  }
+
+  /* Cột logo chiếm phần còn lại */
+  .footer-widgets .row.large-columns-4 > .col:first-child {
+    flex: 1 1 auto !important;
+    padding-left: 0 !important;
+  }
+}
+
+/* ---- 13.4 Khoảng cách title → menu, thu hẹp dòng ----------------------- */
+
+.footer-widgets .widget_nav_menu {
+  margin-top: 0 !important;
+}
+
+.footer-widgets .widget_nav_menu ul.menu {
+  margin-top: 25px !important;
+}
+
+.footer-widgets .widget_nav_menu ul.menu li {
+  margin-top: 2px !important;
+  margin-bottom: 2px !important;
+}
+
+.footer-widgets .widget_nav_menu ul.menu li a {
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+  line-height: 1.4 !important;
+}
+
+/* ---- 13.5 Tablet & Mobile (≤ 849px): logo 1 hàng, 3 menu 1 hàng -------- */
+
+@media (max-width: 849px) {
+  .footer-widgets .row.large-columns-4 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  /* Cột logo chiếm 100% */
+  .footer-widgets .row.large-columns-4 > .col:first-child {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 20px;
+  }
+
+  /* 3 cột menu chia đều 1/3 */
+  .footer-widgets .row.large-columns-4 > .col:not(:first-child) {
+    flex: 0 0 33.33% !important;
+    max-width: 33.33% !important;
+    padding-right: 0 !important;
+  }
+
+  /* Cho phép chữ xuống dòng thay vì tràn */
+  .footer-widgets .widget_nav_menu a {
+    white-space: normal !important;
+    word-wrap: break-word;
+  }
+}
+
+/* ---- 13.6 Mobile nhỏ (≤ 549px) ----------------------------------------- */
+
+@media (max-width: 549px) {
+  .footer-widgets .row.large-columns-4 {
+    padding: 0 10px;
+  }
+
+  .absolute-footer .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  /* Thu nhỏ chữ để 3 cột vừa một hàng */
+  .footer-widgets .widget_nav_menu .widget-title {
+    margin-bottom: 5px !important;
+    font-size: 15px !important;
+  }
+
+  .footer-widgets .widget_nav_menu ul.menu {
+    margin-top: 20px !important;
+  }
+
+  .footer-widgets .widget_nav_menu ul.menu li {
+    margin-bottom: 4px !important;
+  }
+
+  .footer-widgets .widget_nav_menu ul.menu li a {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+  }
+}
+
+/* ==========================================================
+   15. HỘP THÔNG BÁO FREE SHIP (TPFS)
+========================================================== */
+
+.tpfs-wrap {
+  display: block;
+  margin: 0;
+  padding: 0;
+  clear: both;
+}
+
+/* Rỗng (zone không có free ship / giỏ trống) thì không chiếm chỗ */
+.tpfs-wrap:empty {
+  display: none;
+}
+
+/* Khung chung - cùng kích thước/kiểu với 2 hộp BMSM */
+.tpfs-box {
+  box-sizing: border-box;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px dashed #a5a5a5;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.4;
+  text-align: center;
+  color: inherit;
+}
+
+/* Chưa đạt: xanh dương nhạt, khác với xanh lá (đã giảm giá) và vàng (upsell BMSM) */
+.tpfs-box--need {
+  background: #b3e5fc;
+}
+
+/* Đã đạt free ship: xanh lá giống hộp thành công của BMSM */
+.tpfs-box--done {
+  background: #c5e1a5;
+}
+
+.tpfs-box strong {
+  color: #e61b1b;
+  font-weight: 700;
+}
+
+/* Số tiền do WooCommerce/Curcy in ra: kế thừa màu, không bị theme ghi đè */
+.tpfs-box .amount,
+.tpfs-box .woocommerce-Price-amount,
+.tpfs-box .woocommerce-Price-currencySymbol {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+@media (max-width: 549px) {
+  .tpfs-box {
+    font-size: 15px;
+    padding: 8px;
+  }
+}
+
+body.woocommerce-cart .focused-checkout-header.pb {
+  padding-bottom: 10px !important;
+}
+
+body.woocommerce-cart .tpfs-wrap {
+  padding-bottom: 8px;
+}
+
+/* ==========================================================================
+   16. UTILITIES
+   ========================================================================== */
+
+/* Ẩn trực quan nhưng vẫn đọc được bằng screen reader */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* Thay icon Twitter bằng X */
+i.icon-twitter:before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.1em;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
